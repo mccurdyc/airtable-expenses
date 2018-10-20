@@ -1,6 +1,7 @@
 package expenses
 
+import "context"
+
 type Ctx struct {
-	GoogleOauthConfig *oauth.Config
-	Google
+	Context context.Context
 }
