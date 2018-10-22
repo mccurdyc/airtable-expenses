@@ -1,5 +1,9 @@
 package airtable
 
+import (
+	"encoding/json"
+)
+
 type Merchants struct {
 	Records []Merchant `json:"records"`
 }
@@ -20,4 +24,21 @@ type MerchantFields struct {
 	AverageAmount float64 `json:"AverageAmount,omitempty"`
 	MinAmount     float64 `json:"MinAmount,omitempty"`
 	MaxAmount     float64 `json:"MaxAmount,omitempty"`
+}
+
+type merchantMap map[string]string
+
+func (c *Client) CreateUniqueMerchant(n string) error {
+	c.URL.Path = "/Merchants"
+
+	nm := Merchant{
+		Fields: MerchantFields{
+			Name: n,
+		},
+	}
+
+	b, _ := json.Marshal(nm)
+
+	var ms Merchants
+	return c.createUnique(n, &ms, b)
 }

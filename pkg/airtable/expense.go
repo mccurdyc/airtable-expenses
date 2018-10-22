@@ -1,7 +1,11 @@
 package airtable
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -25,4 +29,20 @@ type JSONTime time.Time
 func (t JSONTime) MarshalJSON() ([]byte, error) {
 	stamp := fmt.Sprintf("\"%s\"", time.Time(t).Format("01/02/2006"))
 	return []byte(stamp), nil
+}
+
+func (c *Client) CreateExpense(exp Expense) {
+	c.URL.Path = "/Purchases"
+
+	b, _ := json.Marshal(exp)
+	buf := bytes.NewBuffer(b)
+
+	req := &http.Request{
+		Method: "POST",
+		URL:    c.URL,
+		Header: c.header,
+		Body:   ioutil.NopCloser(buf),
+	}
+
+	c.client.Do(req)
 }

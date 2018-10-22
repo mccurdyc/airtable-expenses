@@ -1,5 +1,9 @@
 package airtable
 
+import (
+	"encoding/json"
+)
+
 type Tags struct {
 	Records []Tag `json:"records"`
 }
@@ -18,4 +22,19 @@ type TagFields struct {
 	AverageAmount float64 `json:"AverageAmount,omitempty"`
 	MinAmount     float64 `json:"MinAmount,omitempty"`
 	MaxAmount     float64 `json:"MaxAmount,omitempty"`
+}
+
+func (c *Client) CreateUniqueTag(n string) error {
+	c.URL.Path = "/Tags"
+
+	nt := Tag{
+		Fields: TagFields{
+			Name: n,
+		},
+	}
+
+	b, _ := json.Marshal(nt)
+
+	var t Tags
+	return c.createUnique(n, &t, b)
 }
