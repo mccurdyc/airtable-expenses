@@ -36,8 +36,8 @@ With that said, use this as an example as it is not a generalized tool.
   go get -u github.com/mccurdyc/cmd/migrate
   ```
 3. Setup the environment
-  1. Fill in the values in `.env.sample`
-  2. `source .env.sample`
+    1. Fill in the values in `.env.sample`
+    2. `$ source .env.sample`
 4. Run the project
   ```bash
   make run
