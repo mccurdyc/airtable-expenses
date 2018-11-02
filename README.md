@@ -30,7 +30,7 @@ With that said, use this as an example as it is not a generalized tool.
 + [Google Sheets Go Quickstart](https://developers.google.com/sheets/api/quickstart/go)
 
 ## Getting Started
-1. Click the "ENABLE THE SHEETS API" button in the [Google Quickstart Guide]((https://developers.google.com/sheets/api/quickstart/go))
+1. Click the "ENABLE THE SHEETS API" button in the [Google Quickstart Guide](https://developers.google.com/sheets/api/quickstart/go)
 2. "Clone" the project
   ```bash
   go get -u github.com/mccurdyc/cmd/migrate
