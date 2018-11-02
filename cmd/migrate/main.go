@@ -78,14 +78,16 @@ func main() {
 					tagMap[gstrTag],
 				},
 				Purchaser: airtable.Purchaser{
-					ID:    "usr5jWb7gSI9FRp2D",
-					Email: "mccurdyc22@gmail.com",
-					Name:  "Colton McCurdy",
+					ID:    os.Getenv("AIRTABLE_USER_ID"),
+					Email: os.Getenv("AIRTABLE_USER_EMAIL"),
+					Name:  os.Getenv("AIRTABLE_USER_NAME"),
 				},
 				Notes: "migration from Google Sheets",
 			},
 		})
 
+		// I don't want to exhaust the API limits
+		// TODO (@mccurdyc): use a [Limiter](https://godoc.org/golang.org/x/time/rate)
 		time.Sleep(1 * time.Second)
 	}
 }
